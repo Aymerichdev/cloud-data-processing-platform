@@ -1,0 +1,21 @@
+config:
+  docker_registry: tonybarr16
+  access_key: ${AWS_ACCESS_KEY_ID}
+  secret_key: ${AWS_SECRET_ACCESS_KEY}
+  bucket: 2024-02-ic4302-gr1
+  producer:
+    replicas: 1
+    name: s3-spider
+    image: s3-spider
+  consumer:
+    replicas: 1
+    name: downloader
+    image: downloader
+  debug:
+    replicas: 1
+    name: debug
+    image: spark-job
+  cronjob:
+    name: spark-job
+    image: spark-job
+    schedule: "*/3 * * * *"
